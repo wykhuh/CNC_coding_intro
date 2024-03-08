@@ -334,7 +334,7 @@ We are writing instructions for the computer. If there is typos, mispelling, pas
 typo for `%>`
 
 ```{r}
-inat %>
+inat %>%
   select(user_login, observed_on, common_name) %>% 
   filter(user_login == 'natureinla')
 ```
