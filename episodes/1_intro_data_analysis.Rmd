@@ -73,6 +73,9 @@ library(here)
 # library(webshot2) # save gt tables as images
 library(lubridate)
 
+library(mapview)
+library(leafpop)
+
 ```
 ```{r}
 path = here("data", "raw", "observations-397280.csv")
@@ -127,8 +130,7 @@ plot_locations
 https://www.ecologi.st/spatial-r/rdemo.html#interactive-maps-with-leaflet-and-mapview
 
 ```{r}
-library(mapview)
-library(leafpop)
+
 
 lpl <- plot_locations %>%
   mutate(click_url = paste("<a href='", url, "'>Link to iNat observation</a>"))

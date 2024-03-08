@@ -39,7 +39,6 @@ Both R and RStudio are:
 RStudio puts most of the things you need to work in R into a single window, and also includes features like keyboard shortcuts, autocompletion of code, and syntax highlighting (different types of code are colored differently, making it easier to navigate your code).
 
 
-![](fig/rstudio_screenshot.png){alt='Screenshot of RStudio showing the 4 "panes".'}
 
 In the above screenshot, we can see 4 "panes" in the default layout:
 
@@ -91,7 +90,6 @@ Within our project folder, we first have a `scripts` folder to hold any scripts 
 
 Let's start making our new folders. Go to the **Files** pane (bottom right), and check the current directory, highlighted in yellow below. You should be in the directory for the project you just made. You shouldn't see any folders in here yet.
 
-![](fig/files_pane.png){alt='RStudio Files pane with current directory path highlighted.'}
 
 Next, click the **New Folder** button, and type in `scripts` to generate your `scripts` folder. It should appear in the Files list now. Repeat the process to make your `data`, `images`, and `documents` folders. Then, click on the `data` folder in the Files pane. This will take you into the `data` folder, which will be empty. Use the **New Folder** button to create `raw` and `cleaned` folders. To return to the parent folder, click on it in the file path, which is highlighted in yellow in the previous image. It's worth noting that the **Files** pane helps you create, find, and open files, but moving through your files won't change where the **working directory** of your project is.
 

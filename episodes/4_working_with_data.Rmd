@@ -64,10 +64,10 @@ library(here)
 library(lubridate)
 library(dplyr)
 
-library(flextable) # tables
+# library(flextable) # tables
 
-library(gt) # tables
-library(webshot2) # save gt tables as images
+# library(gt) # tables
+# library(webshot2) # save gt tables as images
 ```
 
 
@@ -359,7 +359,7 @@ extra `)`
 
 ```{r}
 inat %>%
-  select(user_login, observed_on, common_name)) %>% 
+  select(user_login, observed_on, common_name) %>% 
   filter (user_login = 'natureinla')
 ```
 
@@ -370,6 +370,7 @@ inat %>%
 Get  your observations for  one species. 
 - The data.frame should have `user_login`, `observed_on`,  `common-name`
 - Use `select()`, `filter()`, `&`  
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
 
@@ -417,6 +418,8 @@ inat %>%
 - Use `select()` , `filter()`
 - Use `mutate()` and `year()` to add year column
 - The data.frame should have `user_login`, `observed_on`, and `common-name`. 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::: solution
 
@@ -429,6 +432,7 @@ inat %>%
 
 ```
  
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Count the number of rows with `count()`
 
@@ -498,6 +502,8 @@ inat %>%
 
 - Use `filter()` and `count()`
 - Use `mutate()` and `year()` to add year column
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::: solution
 
@@ -507,5 +513,6 @@ inat %>%
   filter(user_login == 'natureinla') %>%
   count(year, name='obs_count')   
 ```
-:
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 

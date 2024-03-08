@@ -20,10 +20,15 @@ library(readr)
 library(dplyr)
 library(lubridate)
 
-library(ratdat)
+# library(ratdat)
 
 ```
 
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- How do we create graphs?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 ## Creating graphs
 
 We are going to be using functions from the **`ggplot2`** package to create visualizations.  **`ggplot`** plots are built step by step by adding new layers, which allows for extensive customization of plots.
@@ -131,6 +136,7 @@ ggplot(data = inat_year_count,
 Create a chart with all your observations for each year
 - Use `mutate()` and `filter()`
 - 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 :::::::::::::::::::::::: solution 
@@ -145,6 +151,8 @@ my_year  <- inat %>%
 ggplot(data = my_year, mapping = aes(x = year)) +
   geom_bar()
 ```
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 
 ## Changing aesthetics
@@ -302,6 +310,7 @@ Customize the appearance. Here are some ideas.
 - change the axis titles
 - change the colors of the bar or line 
 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution 
 
@@ -317,6 +326,7 @@ my_yearly_plot +
   labs(title = "CNC Los Angeles",  x = "Year",  y = "Observations") 
 
 ```
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Exporting plots

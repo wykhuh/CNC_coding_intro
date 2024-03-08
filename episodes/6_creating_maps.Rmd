@@ -7,12 +7,16 @@ exercises: 4
 ```{r}
 library(sf)
 library(dplyr)
-library(leaflet)
+# library(leaflet)
 library(here)
 library(readr)
 
 ```
+:::::::::::::::::::::::::::::::::::::: questions 
 
+- How do we create maps?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Geographic data
 
