@@ -1,0 +1,168 @@
+---
+title: "Intro to Data Analysis"
+teaching: 10
+exercises: 2
+---
+ 
+
+```{r, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+library(sf) # geo
+ # library(terra)
+
+library(here)
+
+# library(gt) # tables
+# library(webshot2) # save gt tables as images
+library(lubridate)
+
+```
+```{r}
+path = here("data", "raw", "observations-397280.csv")
+inat_raw <- read_csv(path)
+```
+
+  
+## 7.8 Converting a dataframe into a spatial object
+
+https://www.ecologi.st/spatial-r/rdemo.html#converting-a-dataframe-into-a-spatial-object
+
+```{r}
+inat <- inat_raw %>%
+  filter(!is.na(latitude)) %>%
+  filter(!is.na(longitude)) %>%
+  filter(latitude < 40) %>%
+  mutate(year = year(observed_on))  %>%
+  filter(common_name == 'Western Fence Lizard')  %>%
+    select(id, user_login, common_name, year, longitude, latitude, url) 
+```
+
+```{r}
+plot_locations <- inat %>% 
+  st_as_sf(coords = c("longitude", "latitude"),   crs = 4326)
+
+
+plot_locations
+```
+
+# Mapping in ggplot2 with maps, geom_polygon and geom_map
+
+https://r-charts.com/spatial/maps-ggplot2/
+
+```{r}
+path = here('data', 'raw', 'County_Boundaries-2', 'County_Boundaries.shp')
+boundaries <- read_sf(path)
+
+st_crs(boundaries)
+```
+```{r}
+ggplot(data = boundaries) +
+  geom_sf()
+```
+
+```{r}
+
+# install.packages("plotly")
+library(plotly)
+
+p <- ggplot( data = boundaries) +
+  geom_sf(fill = "white")
+
+ggplotly(p)
+
+```
+# Drawing beautiful maps programmatically with R, sf and ggplot2 
+
+https://r-spatial.org/r/2018/10/25/ggplot2-sf-2.html
+
+```{r}
+
+ggplot() +
+  geom_sf(data = boundaries) +
+  geom_point(data = inat, 
+             aes(x = longitude, y = latitude), 
+             color = "blue",
+             size = 3)
+```
+
+```{r}
+
+ggplot() +
+  geom_sf(data = boundaries) +
+  geom_sf(data = plot_locations)  
+```
+
+
+# A Minimal Introduction to GIS (in R)
+
+## 7.9 Adding basemaps to plots
+
+https://www.ecologi.st/spatial-r/rdemo.html#adding-basemaps-to-plots
+
+```{r}
+library(rosm)
+library(ggspatial)
+library(prettymapr)
+
+ggplot( ) +
+  annotation_map_tile(type = "osm", progress = "none") + 
+  geom_sf(data = boundaries, fill='orange', alpha=.1) +
+  geom_sf(data = plot_locations, aes(col = year) ) 
+```
+## 7.10 Interactive maps with leaflet and mapview
+
+
+https://www.ecologi.st/spatial-r/rdemo.html#interactive-maps-with-leaflet-and-mapview
+
+```{r}
+names(plot_locations)
+```
+
+
+```{r}
+library(mapview)
+library(leafpop)
+
+lpl <- plot_locations %>%
+  mutate(click_url = paste("<a href='", url, "'>Link to iNat observation</a>"))
+
+
+mapview(plot_locations, 
+        popup = 
+          popupTable(lpl,
+            zcol = c("user_login", "year", "click_url")))
+```
+# Plotting thousands of points in Leaflet
+
+https://community.rstudio.com/t/plotting-thousands-of-points-in-leaflet-a-way-to-improve-the-speed/8196/7
+
+```{r}
+
+library(leaflet)
+
+leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
+  # Add default OpenStreetMap map tiles
+  addTiles(group = "Default",  options = providerTileOptions(
+  updateWhenZooming = FALSE,      # map won't update tiles until zoom is done
+  updateWhenIdle = FALSE           # map won't load new tiles when panning
+)) %>%  
+  # Add our points
+  addCircleMarkers(data = plot_locations,
+                    radius=3,
+                   color = "green")
+```
+```{r}
+
+# path = here('data', 'raw', 'County_Boundaries-2.geojson')
+
+path = here('data', 'raw', 'County_Boundaries-2', 'County_Boundaries.shp')
+la_boundaries <- st_read(path) %>% st_transform(4326)
+
+leaflet(la_boundaries) %>%
+  addTiles() %>%
+  addPolygons()  
+
+```

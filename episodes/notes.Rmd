@@ -1,0 +1,15 @@
+- how has number of observations and observers changed over time? summary table, bar chart, map with facets
+
+- what are the most popular species of all time? for this year?
+- challenge: who are the most popular observers  of all time? for this year?
+
+- number of observations for one user
+- challenge: attendees search for their observations
+
+
+- number of observations for western fence lizard per year as summary table, bar chart, map, map with facets
+- challenge: attendees choose a species
+
+- number of western fence lizard  observations in expo park
+- challenge: attendees choose a species
+

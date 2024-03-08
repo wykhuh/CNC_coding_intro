@@ -59,7 +59,13 @@ branch: 'main'
 
 # Order of episodes in your lesson
 episodes:
-- introduction.Rmd
+
+- 1_intro_data_analysis.Rmd
+- 2_introduction-r-rstudio.Rmd
+- 3_how-r-thinks-about-data.Rmd
+- 4_working_with_data.Rmd
+- 5_visualizing-ggplot.Rmd
+- 6_creating_maps.Rmd
 
 # Information for Learners
 learners:

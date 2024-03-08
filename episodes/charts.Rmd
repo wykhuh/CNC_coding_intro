@@ -1,0 +1,46 @@
+```{r, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+library(sf) # geo
+ # library(terra)
+
+library(here)
+
+library(gt) # tables
+library(webshot2) # save gt tables as images
+library(lubridate)
+
+```
+```{r}
+path = here("data", "raw", "observations-397280.csv")
+inat <- read_csv(path)
+```
+
+```{r}
+
+top_10 <- inat %>% 
+  filter(!is.na(scientific_name)) %>%
+  select(common_name, scientific_name) %>% 
+  count(common_name, scientific_name, name='count')  %>%
+  arrange(desc(count)) %>% 
+  slice(1:10) 
+
+
+
+top_10 %>% 
+  gt() %>% 
+  tab_header(title = "mtcars dataset") %>%
+  tab_style(
+    style = list(cell_fill(color = "#b2f7ef"),
+    cell_text(weight = "bold")),
+    locations = cells_body(columns = count)) %>%
+  tab_style(
+    style = list(cell_fill(color = "#ffefb5"),
+    cell_text(weight = "bold")), 
+    locations = cells_body(columns = common_name))
+  
+```
+
+
