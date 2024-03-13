@@ -2,7 +2,13 @@
 title: "Intro to Data Analysis"
 teaching: 10
 exercises: 2
+output: html_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 200, out.height = 600, out.width = 600, R.options = list(max.print = 100))
+```
+
 
 :::::::::::::::::::::::::::::::::::::: questions 
 

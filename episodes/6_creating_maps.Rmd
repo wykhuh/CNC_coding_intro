@@ -2,7 +2,14 @@
 title: "Creating maps"
 teaching: 120
 exercises: 4
+output: html_document
+
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 200, out.height = 600, out.width = 600, R.options = list(max.print = 100))
+```
+
 
 ```{r}
 library(sf)
@@ -10,6 +17,8 @@ library(dplyr)
 # library(leaflet)
 library(here)
 library(readr)
+library(ggplot2)
+library(mapview)
 
 ```
 :::::::::::::::::::::::::::::::::::::: questions 

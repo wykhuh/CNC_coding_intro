@@ -2,6 +2,8 @@
 title: "Data visualization with ggplot2"
 teaching: 90
 exercises: 4
+output: html_document
+
 ---
 
 

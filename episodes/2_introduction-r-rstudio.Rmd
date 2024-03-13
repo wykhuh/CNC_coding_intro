@@ -2,8 +2,13 @@
 title: "Introduction to R and RStudio"
 teaching: 45
 exercises: 0
-output: pdf_document
+output: html_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 200, out.height = 600, out.width = 600, R.options = list(max.print = 100))
+```
+
 
 :::::::::::::::::::::::::::::::::::::: questions 
 

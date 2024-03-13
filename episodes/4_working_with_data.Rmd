@@ -2,7 +2,13 @@
 title: "Working with data"
 teaching: 120
 exercises: 4
+output: html_document
+
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 200, out.height = 600, out.width = 600, R.options = list(max.print = 100))
+```
 
   
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -19,10 +25,6 @@ exercises: 4
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
   
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(dpi = 200, out.height = 600, out.width = 600, R.options = list(max.print = 100))
-```
 
 
 ## R Packages
@@ -63,6 +65,7 @@ library(readr)
 library(here)
 library(lubridate)
 library(dplyr)
+library(sf)
 
 # library(flextable) # tables
 
@@ -93,7 +96,7 @@ You may have noticed a bit of feedback from R when you ran the last line of code
 To actually take a look at the data, we can use the `View()` function to open an interactive viewer. 
 
 ```{r}
-View(inat_raw)
+# View(inat_raw)
 ```
 
 Use glimpse() to see a information about a dataframe. Number of rows and columns. We see the column nane, kind of data type (**dbl** for number, **chr** for character, **lgl** for logical. **date** is a data type from data.frame), and the first few values.  
@@ -199,7 +202,6 @@ temp <- inat_raw %>%
   filter(common_name == 'Western Fence Lizard') %>% 
   select(user_login, observed_on, common_name, quality_grade) 
 
-View(temp)
 ```
 
 We can also use multiple conditions in one `filter()` statement. 
@@ -343,7 +345,7 @@ Misspelled `user_logi`
 
 ```{r}
 inat %>%
-  select(user_logi, observed_on, common_name) %>% 
+  select(user_login, observed_on, common_name) %>% 
   filter(user_login == 'natureinla')
 ```
 
@@ -352,7 +354,7 @@ typo for `=`
 ```{r}
 inat %>%
   select(user_login, observed_on, common_name) %>% 
-  filter(user_login = 'natureinla')
+  filter(user_login == 'natureinla')
 ```
 
 extra `)`
@@ -360,7 +362,7 @@ extra `)`
 ```{r}
 inat %>%
   select(user_login, observed_on, common_name) %>% 
-  filter (user_login = 'natureinla')
+  filter (user_login == 'natureinla')
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
